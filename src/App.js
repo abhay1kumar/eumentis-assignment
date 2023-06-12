@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import CardLayout from "./component/CardLayout";
 
-function App() {
+const App = () => {
+  const MemoizedCardLayout = React.memo(CardLayout);
+  const [data, setData] = useState();
+  const getData = async () => {
+    let config = {
+      method: "get",
+      url: `https://jsonplaceholder.typicode.com/users`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      let response = await axios(config);
+      // console.log(response);
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <MemoizedCardLayout data={data} setData={setData} />
+    </>
   );
-}
+};
 
 export default App;
