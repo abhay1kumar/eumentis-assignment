@@ -75,7 +75,6 @@ const Popup = ({ isModalOpen, setIsModalOpen, popupData, setData, data }) => {
             name="website"
             label="Website URL"
             rules={[{ required: true }]}
-            initialValue="http://"
           >
             <Input />
           </Form.Item>

@@ -148,7 +148,7 @@ const CardLayout = ({ data, setData }) => {
                   }}
                 >
                   <GlobalOutlined style={{ marginRight: 10 }} />
-                  <span>{card.website}</span>
+                  <span>http://{card.website}</span>
                 </div>
               </MemoizedCard>
             </Col>
